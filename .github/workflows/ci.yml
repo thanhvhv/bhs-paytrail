@@ -21,7 +21,9 @@ jobs:
         dotnet-version: 8.0.x
         
     - name: Restore dependencies
-      run: dotnet restore Paytrail-dotnet-sdk/Paytrail-dotnet-sdk.csproj
+      run: |
+        dotnet restore Paytrail-dotnet-sdk/Paytrail-dotnet-sdk.csproj
+        dotnet add package xunit --version 2.8.1
       
     - name: Build
       run: dotnet build Paytrail-dotnet-sdk/Paytrail-dotnet-sdk.csproj --no-restore --configuration Release
