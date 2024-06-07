@@ -48,7 +48,7 @@ jobs:
         # TAG_COMMIT: true
 
         # Format of the git tag, [*] gets replaced with actual version
-        # TAG_FORMAT: v*
+        TAG_FORMAT: v*
 
         # API key to authenticate with NuGet server
         NUGET_KEY: oy2nr6qorpnv64awjhcacxyib7p5sjrenoe5uvofap3zoa
