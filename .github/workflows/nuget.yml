@@ -40,4 +40,4 @@ jobs:
         PROJECT_FILE_PATH: ${{ env.PROJECT_PATH }}
         NUGET_KEY: oy2nr6qorpnv64awjhcacxyib7p5sjrenoe5uvofap3zoa
         NUGET_SOURCE: ${{ env.NUGET_SOURCE_URL }}
-        VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
+        VERSION_STATIC: ${{ steps.version.outputs.version-without-v }}
