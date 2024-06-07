@@ -38,6 +38,6 @@ jobs:
       uses: rohith/publish-nuget@v2
       with:
         PROJECT_FILE_PATH: ${{ env.PROJECT_PATH }}
-        NUGET_KEY: oy2nr6qorpnv64awjhcacxyib7p5sjrenoe5uvofap3zoa
+        NUGET_KEY: oy2nr6qorpnv64awjhcacxyib7p5sjrenoe5uvofap3zo
         NUGET_SOURCE: ${{ env.NUGET_SOURCE_URL }}
         VERSION_STATIC: ${{ steps.version.outputs.version-without-v }}
