@@ -33,11 +33,8 @@ jobs:
       id: version
       uses: battila7/get-version-action@v2
 
-    - name: 'publish on version change'
-      id: publish_nuget
-      uses: rohith/publish-nuget@v2
-      with:
-        PROJECT_FILE_PATH: ${{ env.PROJECT_PATH }}
-        NUGET_KEY: oy2nr6qorpnv64awjhcacxyib7p5sjrenoe5uvofap3zo
-        NUGET_SOURCE: ${{ env.NUGET_SOURCE_URL }}
-        VERSION_STATIC: ${{ steps.version.outputs.version-without-v }}
+    - name: 'Pack project'
+      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+
+    - name: 'Push package'
+      run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}\*.nupkg -k oy2nr6qorpnv64awjhcacxyib7p5sjrenoe5uvofap3zoa -s ${{ env.NUGET_SOURCE_URL }}
