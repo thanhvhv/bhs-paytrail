@@ -27,7 +27,7 @@ jobs:
       run: dotnet build Paytrail-dotnet-sdk/Paytrail-dotnet-sdk.csproj --no-restore --configuration Release
       
     - name: Pack
-      run: dotnet pack --configuration Release --no-restore --output ./nupkg ./Core/Core.csproj
+      run: dotnet pack --configuration Release --no-restore --output ./nupkg ./Paytrail-dotnet-sdk/Paytrail-dotnet-sdk.csproj
 
     - name: publish on version change
       id: publish_nuget
