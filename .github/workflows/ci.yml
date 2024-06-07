@@ -32,6 +32,7 @@ jobs:
       run: dotnet restore Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj
       
     - name: Test
+      if: always()
       run: dotnet test Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj --no-restore
 
       
