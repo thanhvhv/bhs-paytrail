@@ -1,0 +1,50 @@
+name: .NET
+
+on:
+  push:
+    tags:
+    - 'v*'
+env:
+  PROJECT_PATH: 'Paytrail-dotnet-sdk/Paytrail-dotnet-sdk.csproj'
+  NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
+  NUGET_API_KEY: 'oy2nr6qorpnv64awjhcacxyib7p5sjrenoe5uvofap3zoa'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Get Version
+      id: version
+      uses: battila7/get-version-action@v2
+
+    # Publish
+    - name: publish on version change
+      id: publish_nuget
+      uses: brandedoutcast/publish-nuget@v2
+      with:
+        # Filepath of the project to be packaged, relative to root of repository
+        PROJECT_FILE_PATH: ${{ env.PROJECT_PATH }}
+
+        # Configuration to build and package
+        BUILD_CONFIGURATION: Release
+
+        # NuGet package id, used for version detection & defaults to project name
+        # PACKAGE_NAME: Core
+
+        # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
+        VERSION_STATIC: ${{ steps.version.outputs.version-without-v }}
+
+        # API key to authenticate with NuGet server
+        NUGET_KEY: ${{env.NUGET_API_KEY}}
+
+        # NuGet server uri hosting the packages
+        NUGET_SOURCE: ${{ env.NUGET_SOURCE_URL }}
