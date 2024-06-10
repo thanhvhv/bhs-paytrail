@@ -41,7 +41,7 @@ jobs:
         # PACKAGE_NAME: Core
 
         # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
-        VERSION_STATIC: ${{ steps.version.outputs.version-without-v }}
+        VERSION_STATIC: ${{ steps.version.outputs.version }}
 
         # API key to authenticate with NuGet server
         NUGET_KEY: ${{env.NUGET_API_KEY}}
