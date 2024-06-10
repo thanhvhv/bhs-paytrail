@@ -29,4 +29,3 @@ jobs:
     - name: Test
       run: |
         dotnet test Paytrail-dotnet-sdk/Paytrail-dotnet-sdk.csproj --configuration Release --no-build
-        exit 0
