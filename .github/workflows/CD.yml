@@ -3,7 +3,7 @@ name: CD
 on:
   push:
     tags:
-    - 'v*'
+    - '*'
 env:
   PROJECT_PATH: 'Paytrail-dotnet-sdk/Paytrail-dotnet-sdk.csproj'
   NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
