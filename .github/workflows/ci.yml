@@ -21,12 +21,10 @@ jobs:
         dotnet-version: 8.0.x
         
     - name: Restore dependencies
-      run: dotnet restore Paytrail-dotnet-sdk/Paytrail-dotnet-sdk.csproj
+      run: dotnet restore Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj
 
     - name: Build
-      run: dotnet build Paytrail-dotnet-sdk/Paytrail-dotnet-sdk.csproj --configuration Release --no-restore
+      run: dotnet build Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj --configuration Release --no-restore
       
     - name: Test
-      run: |
-        dotnet test Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj --configuration Release --no-build
-        exit 0
+      run: dotnet test Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj --configuration Release --no-build
