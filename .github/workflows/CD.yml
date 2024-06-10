@@ -7,7 +7,7 @@ on:
 env:
   PROJECT_PATH: 'Paytrail-dotnet-sdk/Paytrail-dotnet-sdk.csproj'
   NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
-  NUGET_API_KEY: 'oy2nr6qorpnv64awjhcacxyib7p5sjrenoe5uvofap3zoa'
+  NUGET_API_KEY: 'oy2nr6qorpnv64awjhcacxyib7p5sjrenoe5uvofap3'
 
 jobs:
   build:
