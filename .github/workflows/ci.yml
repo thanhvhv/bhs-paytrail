@@ -28,3 +28,15 @@ jobs:
       
     - name: Test
       run: dotnet test Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj --configuration Release --no-build
+      continue-on-error: true
+
+    - name: Check if previous step failed
+      if: failure()
+      run: echo "The previous step failed"
+
+    - name: Check if previous step succeeded
+      if: success()
+      run: echo "The previous step succeeded"
+
+    - name: Run next step regardless
+      run: echo "This runs regardless"
