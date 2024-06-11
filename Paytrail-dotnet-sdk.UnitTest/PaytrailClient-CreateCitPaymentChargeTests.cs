@@ -137,7 +137,7 @@ namespace Paytrail_dotnet_sdk.UnitTest
 
             CreateMitOrCitPaymentRequest payload = new CreateMitOrCitPaymentRequest
             {
-                Token = "c7441208-c2a1-4a10-8eb6-458bd8eaa64f",
+                Token = "d2568f2a-e4c6-40ba-a7cd-d573382ce548",
                 Stamp = Guid.NewGuid().ToString(),
                 Reference = "9187445",
                 Amount = 1590,
