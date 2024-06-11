@@ -131,7 +131,6 @@ namespace Paytrail_dotnet_sdk.UnitTest
         {
             //Arrage
             int expected = (int)Paytrail_dotnet_sdk.Util.ResponseMessage.ResponseError;
-
             //Act
             PaytrailClient payTrail = new PaytrailClient(MERCHANTIDSIS, SECRETKEYSIS, "test");
 
