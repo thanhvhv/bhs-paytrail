@@ -21,4 +21,6 @@ jobs:
         dotnet-version: 8.0.x
         
     - name: Install
-      run: dotnet add package Paytrail-dotnet-sdk --version 1.0.8
+      run: |
+        cd Paytrail-dotnet-sdk
+        dotnet add package Paytrail-dotnet-sdk --version 1.0.8
