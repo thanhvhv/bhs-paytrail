@@ -15,6 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    
+    - name: Get Version
+      id: version
+      uses: battila7/get-version-action@v2
+
     # Publish
     - name: Publish NuGet
       id: publish_nuget
@@ -22,6 +27,8 @@ jobs:
       with:
         # Filepath of the project to be packaged, relative to root of repository
         PROJECT_FILE_PATH: ${{ env.PROJECT_PATH }}
+        # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
+        VERSION_STATIC: ${{ steps.version.outputs.version }}
 
         # API key to authenticate with NuGet server
         NUGET_KEY: ${{env.NUGET_API_KEY}}
