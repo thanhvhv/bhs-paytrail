@@ -26,4 +26,4 @@ jobs:
     - name: Install
       run: |
         cd Paytrail-dotnet-sdk.UnitTest
-        dotnet add package Paytrail-dotnet-sdk --version 1.0.9
+        dotnet add package Paytrail-dotnet-sdk --version 1.0.8
