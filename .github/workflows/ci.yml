@@ -20,23 +20,5 @@ jobs:
       with:
         dotnet-version: 8.0.x
         
-    - name: Restore dependencies
-      run: dotnet restore Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj
-
-    - name: Build
-      run: dotnet build Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj --configuration Release --no-restore
-      
-    - name: Test
-      run: dotnet test Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj --configuration Release --no-build
-      continue-on-error: true
-
-    - name: Check if previous step failed
-      if: failure()
-      run: echo "The previous step failed"
-
-    - name: Check if previous step succeeded
-      if: success()
-      run: echo "The previous step succeeded"
-
-    - name: Run next step regardless
-      run: echo "This runs regardless"
+    - name: Install
+      run: dotnet add package Paytrail-dotnet-sdk --version 1.0.8
