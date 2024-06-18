@@ -23,10 +23,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-
-    - name: Get Version
-      id: version
-      uses: battila7/get-version-action@v2
     
     - name: 'Restore packages'
       run: dotnet restore ${{ env.PROJECT_PATH }}
