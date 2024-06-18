@@ -1,4 +1,4 @@
-name: CD
+name: CI/CD
 
 on:
   release:
@@ -12,30 +12,46 @@ env:
   NUGET_API_KEY: 'oy2nr6qorpnv64awjhcacxyib7p5sjrenoe5uvofap3zoa'
 
 jobs:
+  build:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj
+
+    - name: Build
+      run: dotnet build Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj --configuration Release --no-restore
+      
+    - name: Test
+      run: dotnet test Paytrail-dotnet-sdk.UnitTest/Paytrail-dotnet-sdk.UnitTest.csproj --configuration Release --no-build
+      continue-on-error: true
+
   deploy:
     name: Publish Nuget
     runs-on: ubuntu-latest
     steps:
-
     - uses: actions/checkout@v4
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    
-    - name: 'Restore packages'
+
+    - name: Restore packages
       run: dotnet restore ${{ env.PROJECT_PATH }}
 
-    - name: 'Build project'
+    - name: Build project
       run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
-
-    - name: 'Get Version'
-      id: version
-      uses: battila7/get-version-action@v2
-
-    - name: 'Pack project'
+      
+    - name: Pack project
       run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
 
-    - name: 'Push package'
+    - name: Push package
       run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}\*.nupkg -k ${{ env.NUGET_API_KEY }} -s ${{ env.NUGET_SOURCE_URL }}
